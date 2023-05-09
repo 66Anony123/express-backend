@@ -40,7 +40,7 @@ app.use('/', router);
  
 console.log(process.env.DEV_MONGO_URL);
 
-mongoose.connect(NODE_ENV==='development'?DEV_MONGO_URL:PROD_MONGO_URL)
+mongoose.connect(NODE_ENV==='development'?PROD_MONGO_URL:DEV_MONGO_URL)
   .then(() => {
       console.log('Database connected');
   })
