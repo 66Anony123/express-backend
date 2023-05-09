@@ -11,6 +11,7 @@ const router = require('express').Router();
  */
 async function getAllUsers(req, res) {
     const {query}=req
+    console.log(query)
     const users = await userSchema.find(query.search?{
         "name":query.search
     }:{});

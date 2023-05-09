@@ -4,7 +4,10 @@
  * Importing packages
  */
 const express = require('express');
+
 const mongoose = require('mongoose');
+
+const cors = require('cors')
 require('dotenv').config()
 
 const {
@@ -28,13 +31,15 @@ const app = express();
 
 // Parses the json data from request body
 app.use(express.json());
-
+app.use(cors("*"))
 // Parses the query params from request url
 app.use(express.urlencoded({ extended: true }));
 
 // Uses imported routes in express
 app.use('/', router);
-console.log(NODE_ENV);
+ 
+console.log(process.env.DEV_MONGO_URL);
+
 mongoose.connect(NODE_ENV==='development'?DEV_MONGO_URL:PROD_MONGO_URL)
   .then(() => {
       console.log('Database connected');
